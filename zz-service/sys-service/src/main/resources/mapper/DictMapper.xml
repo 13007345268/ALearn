@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zking.zzcloud.sysservice.mapper.DictMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zking.zzcloud.sysservice.model.Dict">
+        <id column="dict_id" property="dictId" />
+        <result column="dict_name" property="dictName" />
+        <result column="dict_text" property="dictText" />
+        <result column="dict_value" property="dictValue" />
+        <result column="editable" property="editable" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        dict_id, dict_name, dict_text, dict_value, editable
+    </sql>
+
+</mapper>

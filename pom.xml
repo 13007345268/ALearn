@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <!-- 指定了当前Maven模型的版本号，对于Maven2和Maven3来说，它只能是4.0.0 -->
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- 三坐标/打包方式/工程名/工程描述 -->
+    <!-- 在子模块可省略三坐标的groupId和version，默认会继承父模块的groupId和version -->
+    <groupId>com.zking</groupId>
+    <artifactId>zzcloud</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>${project.artifactId}</name>
+    <description>
+        <!--主模块(聚合模块)：-->
+        <!--1. 包含所有的子模块-->
+        <!--2. 定义(非导入)项目中的所有依赖及版本-->
+        <!--3. 定义(非导入)项目中插件及版本-->
+    </description>
+
+    <!-- 版本设置 -->
+    <properties>
+        <!-- zzcloud模块版本 -->
+        <zz-common.version>1.0-SNAPSHOT</zz-common.version>
+
+        <!-- 环境设置：jdk版本和编码设置 -->
+        <java.version>1.8</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <maven.plugin.version>3.8.1</maven.plugin.version>
+
+        <!-- 第三方依赖版本定义 -->
+        <spring-boot.version>2.1.12.RELEASE</spring-boot.version>
+        <spring-cloud.version>Greenwich.SR5</spring-cloud.version>
+        <spring-cloud-alibaba.version>2.1.1.RELEASE</spring-cloud-alibaba.version>
+        <!-- 注：非Spring IO Platform管理的项目，还是要手动引入版本号 -->
+        <spring-platform.version>Cairo-SR8</spring-platform.version>
+        <orika.version>1.5.4</orika.version>
+        <druid.version>1.1.10</druid.version>
+        <mybatisplus.version>3.3.0</mybatisplus.version>
+        <freemarker.version>2.3.29</freemarker.version>
+    </properties>
+
+    <!-- 子模块 -->
+    <modules>
+        <module>zz-common</module>
+        <module>zz-feign</module>
+        <module>zz-service</module>
+        <module>zz-api</module>
+    </modules>
+
+    <!-- 依赖声明 -->
+    <dependencyManagement>
+        <dependencies>
+            <!-- zzcloud项目的公共模块 -->
+            <dependency>
+                <groupId>com.zking.zzcloud</groupId>
+                <artifactId>zz-common</artifactId>
+                <version>${zz-common.version}</version>
+            </dependency>
+
+            <!-- mybatis-plus依赖 -->
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>${mybatisplus.version}</version>
+            </dependency>
+            <!-- mybatis-plus自动生成代码的依赖 -->
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-generator</artifactId>
+                <version>${mybatisplus.version}</version>
+            </dependency>
+
+            <!-- 代码生成器模板 -->
+            <dependency>
+                <groupId>org.freemarker</groupId>
+                <artifactId>freemarker</artifactId>
+                <version>${freemarker.version}</version>
+            </dependency>
+
+            <!-- orika依赖，实体映射工具 -->
+            <dependency>
+                <groupId>ma.glasnost.orika</groupId>
+                <artifactId>orika-core</artifactId>
+                <version>${orika.version}</version>
+            </dependency>
+
+            <!-- spring-boot依赖 -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- spring-cloud依赖 -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- spring-cloud-alibaba依赖 -->
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>${spring-cloud-alibaba.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- spring-io-platform依赖 -->
+            <!-- Spring IO Platform，简单的可以认为是一个依赖维护平台，该平台将相关依赖(核心Spring API框架)汇聚到一起，-->
+            <!-- 针对每个依赖，都提供了一个版本号；这些版本对应的依赖都是经过测试的，可以保证一起正常使用 -->
+            <!-- 简单来说，此项目就是为了解决jar包冲突而生的 -->
+            <dependency>
+                <groupId>io.spring.platform</groupId>
+                <artifactId>platform-bom</artifactId>
+                <version>${spring-platform.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!--  druid连接池驱动-->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid-spring-boot-starter</artifactId>
+                <version>${druid.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <finalName>${project.name}</finalName>
+        <!-- 插件声明，注：仅声明未导入 -->
+        <!-- 在子模块中根据实际需要导入对应的maven编译插件即可：二选一 -->
+        <pluginManagement>
+            <plugins>
+                <!-- springboot的maven插件：每个模块都需要有启动类 -->
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                    <version>${spring-boot.version}</version>
+                    <configuration>
+                        <finalName>${project.build.finalName}</finalName>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>repackage</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+
+                <!-- 普通的maven插件：不需要启动类 -->
+                <plugin>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${maven.plugin.version}</version>
+                    <configuration>
+                        <source>${java.version}</source>
+                        <target>${java.version}</target>
+                        <encoding>UTF-8</encoding>
+                        <compilerArgs>
+                            <arg>-parameters</arg>
+                        </compilerArgs>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+    <!-- maven仓库设置 -->
+    <repositories>
+        <repository>
+            <id>aliyun-repos</id>
+            <url>https://maven.aliyun.com/nexus/content/groups/public/</url>
+            <snapshots>
+                <!--标识 快照版本的jar 不从这个仓库中下载或者寻找，例如：1.0-SNAPSHOT -->
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
+    <!-- 插件仓库设置 -->
+    <pluginRepositories>
+        <pluginRepository>
+            <id>aliyun-plugin</id>
+            <url>https://maven.aliyun.com/nexus/content/groups/public/</url>
+            <snapshots>
+                <!--标识 快照版本的jar 不从这个仓库中下载或者寻找-->
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
+</project>

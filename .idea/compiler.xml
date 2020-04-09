@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="sys-api" />
+        <module name="sys-feign" />
+        <module name="sys-service" />
+        <module name="zz-common" />
+        <module name="zz-gateway" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="sys-api" target="1.8" />
+      <module name="sys-feign" target="1.8" />
+      <module name="sys-service" target="1.8" />
+      <module name="zz-api" target="1.5" />
+      <module name="zz-common" target="1.8" />
+      <module name="zz-feign" target="1.8" />
+      <module name="zz-gateway" target="1.8" />
+      <module name="zz-service" target="1.5" />
+      <module name="zzcloud" target="1.5" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

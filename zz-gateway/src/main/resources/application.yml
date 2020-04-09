@@ -1,0 +1,56 @@
+#此处的5000端口号，就好像以前外置的tomcat的8080，让我们通过浏览器进行访问
+#但此服务只是做了一个路由，它会将请求路由到其它微服务(一般是消费者)进行处理
+server:
+  port: 5000
+spring:
+  application:
+    name: zz-gateway
+  cloud:
+    nacos:
+      discovery:
+        server-addr: nacos.com:8848
+    gateway:
+      discovery:
+        locator:
+          #是否与服务发现组件进行结合，通过serviceId(必须设置成大写)转发到具体的服务实例。默认false
+          #为true代表开启基于服务发现的路由规则。
+          #之前默认的规则就不能访问了
+          enabled: false
+          #配置之后访问时serviceId无需大写
+          lower-case-service-id: true
+      # 路由（routes：路由，它由唯一标识（ID）、目标服务地址（uri）、一组断言（predicates）和一组过滤器组成（filters）。filters 不是必需参数。）
+      routes:
+        #路由标识（id：标识，具有唯一性）
+        - id: sys-api-route
+          #目标服务地址（uri：地址，请求转发后的地址），会自动从注册中心获得服务的IP，不需要手动写死
+          uri: lb://sys-api
+          #优先级，越小越优先
+          #order: 999
+          #路由条件（predicates：断言）
+          predicates:
+            # 路径匹配，
+            - Path=/sys/**
+          filters:
+            #URL前缀删除示例：请求/sys/cal/add，StripPrefix=1，去除掉1个前缀之后，最后转发到目标服务的路径为/cal/add
+            - StripPrefix=1
+
+## 开启饥饿模式
+ribbon:
+  eager-load:
+    enabled: true
+    clients: user-service-api
+
+logging:
+  level:
+    #开启spring-Cloud-gateway的日志级别为debug，方便debug调试
+    org.springframework.cloud.gateway: trace
+    org.springframework.http.server.reactive: debug
+    org.springframework.web.reactive: debug
+    reactor.ipc.netty: debug
+
+#springboot监控Actuator，暴露所有端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

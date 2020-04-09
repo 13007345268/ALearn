@@ -1,0 +1,46 @@
+1. 项目中的模块分三级
+   一级模块(即根模块)
+   二级模块
+   三级模块
+
+2. 所有模块只使用quickstart或spring-initializr这两种方式创建
+   zzcloud                                          聚合模块，quickstart方式创建，即主模块
+     zz-api                                           聚合模块，quickstart方式创建，包含所有的消费者模块，继承zzcloud
+       xxx-api                                          非聚合模块(消费者)，spring-initializr方式创建，继承zz-api
+     zz-common                                        非聚合模块，quickstart方式创建，公共模块
+     zz-gateway                                       非聚合模块，spring-initializr方式创建，继承zzcloud
+     zz-service                                       聚合模块，quickstart方式创建，包含所有的生产者模块，继承zzcloud
+       xxx-service                                      非聚合模块(生产者)，spring-initializr方式创建，继承zz-service
+     zz-feign                                         聚合模块，quickstart方式创建
+       xxx-feign                                        非聚合模块(生产者模块抽象)，spring-initializr方式创建，继承zz-service-feign
+   注1：所有的聚合模块，均使用quickstart方式创建
+   注2：生产者和消费者模块无法添加jrebel支持，检查pom的打包方式是否为“jar”
+        <packaging>pom</packaging>  ==> <packaging>jar</packaging>
+   注3：xxx-service模块和xxx-api模块都依赖xxx-service-feign模块
+
+3. 项目包命名规范
+   zzcloud
+     zz-common        com.zking.zzcloud.common
+     zz-gateway       com.zking.zzcloud.gateway
+     zz-service
+       xxx-service    com.zking.zzcloud.xxxservice
+     zz-feign
+       xxx-feign      com.zking.zzcloud.xxxfeign
+     zz-api
+       xxx-api        com.zking.zzcloud.xxxapi
+
+   注1：开发顺序
+        xxx-feign      XxxDTO，DTO可以有多个
+        xxx-service    依赖XxxDTO
+        xxx-feign      XxxFeign
+        xxx-api
+   注2：消费者模块注意重新扫描xxx-feign模块的IXxxFeign接口，因为在其它子模块定义且所在包不一样，需要手动扫描引入
+        @EnableFeignClients({"com.zking.zzcloud.sysfeign.feign"})
+
+
+
+4. 项目端口号
+   5000~7999
+   路由端口：5000~5010
+   消费者：6000~6999  生产者和消费者端口要对应，例如：6100->7100
+   生产者：7000~7999

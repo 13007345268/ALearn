@@ -1,0 +1,19 @@
+server:
+  port: 6100
+spring:
+  application:
+    name: sys-api
+  cloud:
+    nacos:
+      discovery:
+        # \u914D\u7F6ENacos\u5730\u5740
+        server-addr: nacos.com:8848
+  main:
+    allow-bean-definition-overriding: true
+
+# \u5F00\u542F\u9965\u997F\u6A21\u5F0F
+ribbon:
+  eager-load:
+    enabled: true
+    clients: sys-service
+

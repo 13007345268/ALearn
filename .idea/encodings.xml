@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding" native2AsciiForPropertiesFiles="true" defaultCharsetForPropertiesFiles="UTF-8">
+    <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zz-api" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zz-api/sys-api" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zz-api/sys-api/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zz-api/sys-api/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zz-common" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zz-common/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zz-feign" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zz-feign/sys-feign" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zz-feign/sys-feign/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zz-gateway" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zz-gateway/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zz-gateway/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zz-service" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zz-service/sys-service" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zz-service/sys-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zz-service/sys-service/src/main/resources" charset="UTF-8" />
+    <file url="PROJECT" charset="UTF-8" />
+  </component>
+</project>

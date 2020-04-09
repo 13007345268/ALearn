@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.zking</groupId>
+        <artifactId>zzcloud</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <!-- 三坐标(继承父模块的groupId和version)/打包方式/工程名/工程描述 -->
+    <groupId>com.zking.zzcloud</groupId>
+    <artifactId>zz-api</artifactId>
+    <packaging>pom</packaging>
+    <name>${project.artifactId}</name>
+    <description>
+        <!--聚合模块：-->
+        <!--1. 包含所有的消费者-->
+        <!--2. 导入所有的消费者需要的公共依赖-->
+        <!--2. 定义(非导入)所有的xxx-feign模块-->
+    </description>
+
+    <!-- 版本设置 -->
+    <properties>
+        <zz-feign.version>1.0-SNAPSHOT</zz-feign.version>
+    </properties>
+
+    <!-- 子模块设置 -->
+    <modules>
+        <module>sys-api</module>
+    </modules>
+
+    <!-- 依赖声明 -->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.zking.zzcloud</groupId>
+                <artifactId>sys-feign</artifactId>
+                <version>${zz-feign.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <!-- 导入依赖 -->
+    <dependencies>
+        <!-- zzcloud项目的公共模块-->
+        <dependency>
+            <groupId>com.zking.zzcloud</groupId>
+            <artifactId>zz-common</artifactId>
+        </dependency>
+
+        <!-- orika依赖，实体映射工具 -->
+        <dependency>
+            <groupId>ma.glasnost.orika</groupId>
+            <artifactId>orika-core</artifactId>
+        </dependency>
+
+        <!-- 支持全栈式Web开发，包括Tomcat和spring-webmvc -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!-- Nacos服务注册与发现依赖 -->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+        </dependency>
+
+        <!--Nacos配置中心客户端依赖(与Eureka不同没有服务端)-->
+        <!--        与eurake不同没有服务端-->
+        <!--        在需要使用配置中心的地方才导入此模块-->
+        <!--        <dependency>-->
+        <!--            <groupId>com.alibaba.cloud</groupId>-->
+        <!--            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>-->
+        <!--        </dependency>-->
+
+        <!-- feign远程调用，生产者模块不需要 -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
+
+        <!--junit测试-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- 工具插件,自动生成setter,getter,hashcode,equals,constructor,妈妈再也不用担心我写重复代码了-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <finalName>${project.name}</finalName>
+        <plugins>
+            <!-- springboot的maven插件：每个模块都需要有启动类 -->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

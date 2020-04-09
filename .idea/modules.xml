@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/zz-api/sys-api/sys-api.iml" filepath="$PROJECT_DIR$/zz-api/sys-api/sys-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/zz-feign/sys-feign/sys-feign.iml" filepath="$PROJECT_DIR$/zz-feign/sys-feign/sys-feign.iml" />
+      <module fileurl="file://$PROJECT_DIR$/zz-service/sys-service/sys-service.iml" filepath="$PROJECT_DIR$/zz-service/sys-service/sys-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/zz-api/zz-api.iml" filepath="$PROJECT_DIR$/zz-api/zz-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/zz-common/zz-common.iml" filepath="$PROJECT_DIR$/zz-common/zz-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/zz-feign/zz-feign.iml" filepath="$PROJECT_DIR$/zz-feign/zz-feign.iml" />
+      <module fileurl="file://$PROJECT_DIR$/zz-gateway/zz-gateway.iml" filepath="$PROJECT_DIR$/zz-gateway/zz-gateway.iml" />
+      <module fileurl="file://$PROJECT_DIR$/zz-service/zz-service.iml" filepath="$PROJECT_DIR$/zz-service/zz-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/zzcloud.iml" filepath="$PROJECT_DIR$/zzcloud.iml" />
+    </modules>
+  </component>
+</project>
