@@ -1,8 +1,6 @@
 package com.zking.zzcloud.sysapi.controller;
 
-import com.zking.zzcloud.sysfeign.dto.CalDTO;
 import com.zking.zzcloud.sysfeign.dto.DictDTO;
-import com.zking.zzcloud.sysfeign.feign.ICalFeign;
 import com.zking.zzcloud.sysfeign.feign.IDirtFeign;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,10 +15,10 @@ public class DictController {
     @Autowired
     private  IDirtFeign dictFeign;
 
-    @RequestMapping("/save")
-    public String add(DictDTO dictDTO) {
+    @RequestMapping("/saveAndupdate")
+    public String saveAndupdate(DictDTO dictDTO) {
         log.info("dictDTO={}", dictDTO);
-        String data = dictFeign.save(dictDTO);
+        String data = dictFeign.saveAndupdate(dictDTO);
         return data;
     }
 
@@ -30,6 +28,7 @@ public class DictController {
         String data = dictFeign.update(dictDTO);
         return data;
     }
+
 
     @RequestMapping("/delete")
     public String delete(DictDTO dictDTO) {

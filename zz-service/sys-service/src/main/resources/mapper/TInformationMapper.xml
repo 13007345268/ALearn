@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zking.zzcloud.sysservice.mapper.TInformationMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zking.zzcloud.sysservice.model.TInformation">
+        <id column="information_id" property="informationId" />
+        <result column="information_titile" property="informationTitile" />
+        <result column="information_label" property="informationLabel" />
+        <result column="information_author" property="informationAuthor" />
+        <result column="information_approver" property="informationApprover" />
+        <result column="information_content" property="informationContent" />
+        <result column="information_state" property="informationState" />
+        <result column="information_datatime" property="informationDatatime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        information_id, information_titile, information_label, information_author, information_approver, information_content, information_state, information_datatime
+    </sql>
+
+</mapper>

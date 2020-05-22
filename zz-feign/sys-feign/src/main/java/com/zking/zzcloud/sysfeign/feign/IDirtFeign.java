@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @FeignClient("sys-service")
 public interface IDirtFeign {
-    @RequestMapping(value = "/dict/save", method = RequestMethod.POST)
-    String save(DictDTO dictDTO);
+    @RequestMapping(value = "/dict/saveAndupdate", method = RequestMethod.POST)
+    String saveAndupdate(DictDTO dictDTO);
 
     @RequestMapping(value = "/dict/update", method = RequestMethod.POST)
     String update(DictDTO dictDTO);
