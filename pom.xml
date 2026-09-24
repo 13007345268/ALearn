@@ -39,7 +39,7 @@
         <orika.version>1.5.4</orika.version>
         <druid.version>1.1.10</druid.version>
         <mybatisplus.version>3.3.0</mybatisplus.version>
-        <freemarker.version>2.3.29</freemarker.version>
+        <freemarker.version>2.3.35</freemarker.version>
     </properties>
 
     <!-- 子模块 -->
